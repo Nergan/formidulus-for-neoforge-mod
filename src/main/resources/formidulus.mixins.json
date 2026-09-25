@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.formidulus.mod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ItemMixin",
+    "LivingEntityMixin",
+    "MobEntityMixin",
+    "PlayerEntityMixin",
+    "PumpkinMixin",
+    "itemability.BulwarkItemMixin",
+    "itemability.BulwarkPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

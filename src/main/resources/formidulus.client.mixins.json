@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "package": "com.formidulus.mod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "AbstractInventoryScreenMixin",
+    "ArmorFeatureRendererMixin",
+    "BackgroundRendererMixin",
+    "BipedModelMixin",
+    "HeldItemRendererMixin",
+    "InGameHudMixin",
+    "MouseMixin",
+    "MusicTrackerMixin",
+    "WorldRendererMixin",
+    "BossBarHudMixin",
+    "ClientBossBarMixin",
+    "ClientItemMixin",
+    "itemability.ClientBulwarkAbilityMixin",
+    "itemability.ClientBulwarkAbilityPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

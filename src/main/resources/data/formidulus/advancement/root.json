@@ -1,0 +1,39 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/polished_tuff.png",
+    "description": {
+      "translate": "advancement.formidulus.root.description"
+    },
+    "icon": {
+      "components": {
+        "minecraft:map_color": 9325736,
+        "minecraft:map_decorations": {
+          "+": {
+            "type": "formidulus:cult_hideout",
+            "rotation": 180.0,
+            "x": 0.0,
+            "z": 0.0
+          }
+        }
+      },
+      "count": 1,
+      "id": "minecraft:filled_map"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.formidulus.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,50 @@
+# Значения вида ${...} подставляются Gradle-задачей generateModMetadata
+# из gradle.properties (см. build.gradle.kts).
+
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+
+license = "${mod_license}"
+issueTrackerURL = "https://github.com/Nergan/formidulus-for-neoforge/issues"
+enumExtensions = "META-INF/enumextensions.json"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+logoFile = "logo.png"
+logoBlur = false
+displayURL = "https://modrinth.com/project/formidulus-for-neoforge"
+authors = "${mod_authors}"
+description = '''
+${mod_description}
+
+Босс и несколько легенд. Порт Formidulus от Absolutelyaya на NeoForge. Игровой код оригинала остаётся под MIT.
+'''
+
+[[mixins]]
+config = "formidulus.mixins.json"
+
+[[mixins]]
+config = "formidulus.client.mixins.json"
+
+[[dependencies.${mod_id}]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neo_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "kotlinforforge"
+type = "required"
+versionRange = "${kff_version_range}"
+ordering = "NONE"
+side = "BOTH"

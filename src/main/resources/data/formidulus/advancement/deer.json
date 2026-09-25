@@ -1,0 +1,32 @@
+{
+  "parent": "formidulus:cultists",
+  "criteria": {
+    "win": {
+      "conditions": {
+        "bossId": "formidulus:deer"
+      },
+      "trigger": "formidulus:bossfight_win"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.formidulus.deer.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "formidulus:deer_skull"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.formidulus.deer.title"
+    }
+  },
+  "requirements": [
+    [
+      "win"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/damagesource/DamageEffects",
+      "name": "FORMIDULUS_LANTERN",
+      "constructor": "(Ljava/lang/String;Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "com/formidulus/mod/FormidulusEnumParams",
+        "field": "LANTERN"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/damagesource/DamageEffects",
+      "name": "FORMIDULUS_CLAW",
+      "constructor": "(Ljava/lang/String;Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "com/formidulus/mod/FormidulusEnumParams",
+        "field": "CLAW"
+      }
+    }
+  ]
+}
