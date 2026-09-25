@@ -25,7 +25,7 @@ public abstract class MusicTrackerMixin {
       cancellable = true
    )
    void onTick(CallbackInfo ci) {
-      if (FormidulusClient.bossMusicHandler.isPlayingMusic()) {
+      if (FormidulusClient.bossMusicHandler != null && FormidulusClient.bossMusicHandler.isPlayingMusic()) {
          if (this.currentMusic != null) {
             this.stopPlaying();
          }

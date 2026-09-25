@@ -17,25 +17,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin({Player.class})
-public abstract class BulwarkPlayerMixin extends Player {
-   protected BulwarkPlayerMixin(Level world, net.minecraft.core.BlockPos pos, float yRot, com.mojang.authlib.GameProfile profile) {
-      super(world, pos, yRot, profile);
+public abstract class BulwarkPlayerMixin extends LivingEntity {
+   protected BulwarkPlayerMixin(EntityType<? extends LivingEntity> type, Level world) {
+      super(type, world);
    }
 
    public void knockback(double strength, double x, double z) {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       if (!comp.hasBulwark()) {
          super.knockback(strength, x, z);
       }
    }
 
    protected double getDefaultGravity() {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       return comp.hasBulwark() ? super.getDefaultGravity() * 2.0 : super.getDefaultGravity();
    }
 
    public boolean isShiftKeyDown() {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       return super.isShiftKeyDown() || comp.hasBulwark();
    }
 
@@ -45,7 +45,7 @@ public abstract class BulwarkPlayerMixin extends Player {
       cancellable = true
    )
    void onJump(CallbackInfo ci) {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       if (comp.hasBulwark()) {
          ci.cancel();
       }
@@ -57,18 +57,18 @@ public abstract class BulwarkPlayerMixin extends Player {
       argsOnly = true
    )
    Vec3 modifyInputs(Vec3 input) {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       return comp.hasBulwark() ? input.multiply(0.0, 1.0, 0.0) : input;
    }
 
    public Vec3 getDeltaMovement() {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       return comp.hasBulwark() ? super.getDeltaMovement().multiply(0.3F, 1.0, 0.3F) : super.getDeltaMovement();
    }
 
    public void turn(double cursorDeltaX, double cursorDeltaY) {
       super.turn(cursorDeltaX, cursorDeltaY);
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       if (comp.hasBulwark()) {
          float yaw = comp.getBulwarkYaw();
          this.setYBodyRot(yaw);
@@ -86,7 +86,7 @@ public abstract class BulwarkPlayerMixin extends Player {
       cancellable = true
    )
    void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       if (comp.hasBulwark() && comp.getBulwarkEntity() != null) {
          if (comp.getBulwarkEntity().tryBlockDamage(source, amount)) {
             cir.setReturnValue(false);
@@ -95,7 +95,7 @@ public abstract class BulwarkPlayerMixin extends Player {
    }
 
    public boolean isBlocking() {
-      IBulwarkComponent comp = FormidableComponents.bulwark(this);
+      IBulwarkComponent comp = FormidableComponents.bulwark((Player)(Object)this);
       return comp.hasBulwark() ? false : super.isBlocking();
    }
 }

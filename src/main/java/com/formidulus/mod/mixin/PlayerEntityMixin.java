@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({Player.class})
-public abstract class PlayerEntityMixin extends Player {
+public abstract class PlayerEntityMixin extends LivingEntity {
    @Unique
    ItemStack lastHeldItem;
    @Unique
@@ -36,8 +36,8 @@ public abstract class PlayerEntityMixin extends Player {
    @NotNull
    public abstract ItemStack getWeaponItem();
 
-   protected PlayerEntityMixin(Level world, net.minecraft.core.BlockPos pos, float yRot, com.mojang.authlib.GameProfile profile) {
-      super(world, pos, yRot, profile);
+   protected PlayerEntityMixin(EntityType<? extends LivingEntity> type, Level world) {
+      super(type, world);
    }
 
    @WrapOperation(
@@ -80,7 +80,7 @@ public abstract class PlayerEntityMixin extends Player {
             && this.getUsedItemHand().equals(InteractionHand.MAIN_HAND)
             && this.lastHeldItem != null
             && this.lastHeldItem.get(DataComponentRegistry.ABILITY) instanceof AbilityComponent ability) {
-            ability.ability().onStopUsing(this.lastHeldItem, (Player)this, InteractionHand.MAIN_HAND);
+            ability.ability().onStopUsing(this.lastHeldItem, (Player)(Object)this, InteractionHand.MAIN_HAND);
          }
 
          this.lastHeldItem = stack;

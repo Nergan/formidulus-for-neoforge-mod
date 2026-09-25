@@ -3,12 +3,12 @@ package com.formidulus.mod.commands;
 import com.formidulus.mod.realtime.TimedEventHandler;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
-import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 public class Commands {
-   public static void register(IEventBus modBus) {
-      modBus.addListener(Commands::onRegister);
+   public static void register() {
+      NeoForge.EVENT_BUS.addListener(Commands::onRegister);
    }
 
    private static void onRegister(RegisterCommandsEvent event) {

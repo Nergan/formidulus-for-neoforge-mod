@@ -64,7 +64,7 @@ public class Formidulus {
       modBus.addListener(this::onRegister);
       modBus.addListener((BuildCreativeModeTabContentsEvent event) -> ItemRegistry.onCreative(event));
       PacketRegistry.register(modBus);
-      Commands.register(modBus);
+      Commands.register();
       TimedEventHandler.update();
       this.lastDayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
       modBus.addListener((EntityAttributeCreationEvent event) -> EntityRegistry.register(event));

@@ -36,7 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin({LivingEntity.class})
-public abstract class LivingEntityMixin extends LivingEntity implements LivingEntityAccessor {
+public abstract class LivingEntityMixin extends Entity implements LivingEntityAccessor {
    @Unique
    int bossImmunity;
    @Unique
@@ -44,7 +44,7 @@ public abstract class LivingEntityMixin extends LivingEntity implements LivingEn
    @Unique
    int shieldBreakImmunity;
 
-   public LivingEntityMixin(EntityType<? extends LivingEntity> type, Level world) {
+   public LivingEntityMixin(EntityType<?> type, Level world) {
       super(type, world);
    }
 
@@ -73,7 +73,7 @@ public abstract class LivingEntityMixin extends LivingEntity implements LivingEn
       if (!this.isInvulnerableTo(source) && !(amount <= 0.0F)) {
          if (source.getEntity() instanceof LivingEntity attacker
             && attacker.getWeaponItem().get(DataComponentRegistry.ABILITY) instanceof AbilityComponent component) {
-            component.ability().onDamageEntity(attacker.getWeaponItem(), attacker, source, amount, (LivingEntity)this);
+            component.ability().onDamageEntity(attacker.getWeaponItem(), attacker, source, amount, (LivingEntity)(Object)this);
          }
       }
    }
@@ -202,7 +202,7 @@ public abstract class LivingEntityMixin extends LivingEntity implements LivingEn
       at = {@At("TAIL")}
    )
    void onTickMovement(CallbackInfo ci) {
-      LivingEntity self = (LivingEntity)this;
+      LivingEntity self = (LivingEntity)(Object)this;
       if (this.level().isClientSide) {
          ItemStack head = this.getItemBySlot(EquipmentSlot.HEAD);
          if (!TrinketsUtil.performIfPresent(self, ItemRegistry.JOLLY_HAT, i -> JollyHatItem.tickSnowfall(self, i)) && head.is(ItemRegistry.JOLLY_HAT)) {
