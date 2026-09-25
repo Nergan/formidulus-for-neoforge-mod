@@ -25,13 +25,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -147,13 +146,15 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
       }
    }
 
-   @ModifyConstant(
+   @Inject(
       method = {"hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"},
-      constant = {@Constant(
-         intValue = 20
+      at = {@At(
+         value = "FIELD",
+         target = "Lnet/minecraft/world/entity/LivingEntity;invulnerableTime:I",
+         opcode = Opcodes.PUTFIELD
       )}
    )
-   int modifyTimeUntilRegen(int constant, @Local(argsOnly = true) DamageSource source) {
+   void onInvulnerableTimeSet(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
       if (source.is(TagRegistry.BOSS_DAMAGE)) {
          this.bossImmunity = 10;
       }
@@ -161,8 +162,6 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
       if (source.is(TagRegistry.SOUL_DAMAGE)) {
          this.soulImmunity = 15;
       }
-
-      return constant;
    }
 
    @Inject(
@@ -179,13 +178,15 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
       }
    }
 
-   @ModifyConstant(
+   @Inject(
       method = {"handleDamageEvent(Lnet/minecraft/world/damagesource/DamageSource;)V"},
-      constant = {@Constant(
-         intValue = 20
+      at = {@At(
+         value = "FIELD",
+         target = "Lnet/minecraft/world/entity/LivingEntity;invulnerableTime:I",
+         opcode = Opcodes.PUTFIELD
       )}
    )
-   int modifyTimeUntilRegenOnDamaged(int constant, @Local(argsOnly = true) DamageSource source) {
+   void onInvulnerableTimeSetInDamageEvent(DamageSource source, CallbackInfo ci) {
       if (source.is(TagRegistry.BOSS_DAMAGE)) {
          this.bossImmunity = 10;
       }
@@ -193,8 +194,6 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
       if (source.is(TagRegistry.SOUL_DAMAGE)) {
          this.soulImmunity = 15;
       }
-
-      return constant;
    }
 
    @Inject(
