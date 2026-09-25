@@ -27,7 +27,7 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
       method = {"render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V"},
       at = {@At(
          value = "INVOKE",
-         target = "Lnet/minecraft/client/renderer/entity/layers/HumanoidArmorLayer;renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;)V"
+         target = "Lnet/minecraft/client/renderer/entity/layers/HumanoidArmorLayer;renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;FFFFFF)V"
       )}
    )
    void wrapRenderArmor(
@@ -38,6 +38,12 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
       EquipmentSlot armorSlot,
       int light,
       A model,
+      float limbSwing,
+      float limbSwingAmount,
+      float partialTick,
+      float ageInTicks,
+      float netHeadYaw,
+      float headPitch,
       Operation<Void> original
    ) {
       if (armorSlot.equals(EquipmentSlot.HEAD)) {
@@ -54,6 +60,8 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
          }
       }
 
-      original.call(new Object[]{instance, matrices, vertexConsumers, entity, armorSlot, light, model});
+      original.call(
+         new Object[]{instance, matrices, vertexConsumers, entity, armorSlot, light, model, limbSwing, limbSwingAmount, partialTick, ageInTicks, netHeadYaw, headPitch}
+      );
    }
 }

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin({BulwarkAbility.class})
 public class ClientBulwarkAbilityMixin {
    @Inject(
-      method = {"Labsolutelyaya/formidulus/item/abilities/BulwarkAbility;onUse(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/InteractionResultHolder;)Ljava/util/Optional;"},
+      method = {"onUse(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/InteractionResultHolder;)Ljava/util/Optional;"},
       at = {@At("HEAD")}
    )
    void onStartUsing(
@@ -31,7 +31,7 @@ public class ClientBulwarkAbilityMixin {
    }
 
    @Inject(
-      method = {"Labsolutelyaya/formidulus/item/abilities/BulwarkAbility;onStopUsing(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;)V"},
+      method = {"onStopUsing(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;)V"},
       at = {@At("HEAD")}
    )
    void onStopUsing(ItemStack stack, LivingEntity user, InteractionHand hand, CallbackInfo ci) {
