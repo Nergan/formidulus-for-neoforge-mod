@@ -8,7 +8,7 @@ A boss and a few legends for Minecraft 1.21.1 on NeoForge. This is a port of [Fo
 
 ## Downloads
 
-GitHub Release `v0.1.2`: [github.com/Nergan/formidulus-for-neoforge](https://github.com/Nergan/formidulus-for-neoforge/releases)
+GitHub Releases, one page per Minecraft version and loader: [github.com/Nergan/formidulus-for-neoforge](https://github.com/Nergan/formidulus-for-neoforge/releases)
 
 | File | Required | Notes |
 | --- | --- | --- |

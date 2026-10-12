@@ -8,7 +8,7 @@
 
 ## Загрузки
 
-GitHub Release `v0.1.2`: [github.com/Nergan/formidulus-for-neoforge](https://github.com/Nergan/formidulus-for-neoforge/releases)
+GitHub Releases, отдельная страница на версию Minecraft и загрузчик: [github.com/Nergan/formidulus-for-neoforge](https://github.com/Nergan/formidulus-for-neoforge/releases)
 
 | Файл | Нужен | Примечание |
 | --- | --- | --- |
